@@ -24,6 +24,7 @@ public class Main {
                 map.put(currentWord, tempMap);
             }
         }
+
         System.out.println(map);
     }
 }
