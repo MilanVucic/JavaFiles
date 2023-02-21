@@ -3,23 +3,25 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        String input = "ovo je test za ovo za ovo za ovo za ovo sto je testirano za nas za nas ipak";
+        // this -> [is->1]
+        String input = "this is this is a test is testing this test please";
         String[] words = input.split(" ");
         Map<String, Map<String, Integer>> map = new HashMap<>();
         for (int i = 0; i < words.length - 1; i++) {
-            String word = words[i].toLowerCase();
+            String currentWord = words[i].toLowerCase();
             String nextWord = words[i + 1].toLowerCase();
-            if (map.containsKey(word)) {
-                Map<String, Integer> temp = map.get(word);
-                if (temp.containsKey(nextWord)) {
-                    temp.put(nextWord, temp.get(nextWord) + 1);
+            if (map.containsKey(currentWord)) {
+                Map<String, Integer> tempMap = map.get(currentWord);
+                if (tempMap.containsKey(nextWord)) {
+                    int count = tempMap.get(nextWord);
+                    tempMap.put(nextWord, count + 1);
                 } else {
-                    temp.put(nextWord, 1);
+                    tempMap.put(nextWord, 1);
                 }
             } else {
-                HashMap<String, Integer> tempMap = new HashMap<>();
+                Map<String, Integer> tempMap = new HashMap<>();
                 tempMap.put(nextWord, 1);
-                map.put(word, tempMap);
+                map.put(currentWord, tempMap);
             }
         }
         System.out.println(map);
